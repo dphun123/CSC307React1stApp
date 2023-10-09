@@ -38,6 +38,12 @@ app.use(express.json());
 
 app.get('/users', (req, res) => {
   const name = req.query.name;
+  const job = req.query.job
+  if (name != undefined && job!= undefined){
+      let result = findUserByNameAndJob(name, job)
+      result = {users_list: result};
+      res.send(result);
+  }
   if (name != undefined){
       let result = findUserByName(name);
       result = {users_list: result};
@@ -50,6 +56,10 @@ app.get('/users', (req, res) => {
 
 const findUserByName = (name) => { 
   return users['users_list'].filter( (user) => user['name'] === name); 
+}
+
+const findUserByNameAndJob = (name, job) => { 
+  return users['users_list'].filter( (user) => user['name'] === name && user['job'] === job); 
 }
 
 app.get('/users/:id', (req, res) => {
