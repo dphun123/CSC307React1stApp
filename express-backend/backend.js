@@ -1,5 +1,6 @@
 import express from "express";
 import cors from 'cors';
+import { v4 as uuidv4 } from 'uuid';
 
 const app = express();
 const port = 8000;
@@ -87,6 +88,9 @@ app.post('/users', (req, res) => {
 });
 
 function addUser(user){
+  if (!user['id']){
+    user['id'] = uuidv4();
+  }
   users['users_list'].push(user);
 }
 
