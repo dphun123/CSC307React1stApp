@@ -7,7 +7,7 @@ function MyApp() {
   const [characters, setCharacters] = useState([]);
     
   function removeOneCharacter (index) {
-    const id = characters[index]['id']
+    const id = characters[index]['_id']
     const updated = characters.filter((character, i) => {
         return i !== index
     });
